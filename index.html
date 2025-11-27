@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Six Seven - Game Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d1b0d 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            color: #ffffff;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(118, 185, 0, 0.1) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(118, 185, 0, 0.08) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(118, 185, 0, 0.2);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-section {
+            text-align: left;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(118, 185, 0, 0.3);
+        }
+
+        .logo span {
+            color: #76b900;
+        }
+
+        .tagline {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header-button {
+            padding: 12px 28px;
+            background: rgba(20, 20, 20, 0.8);
+            border: 2px solid rgba(118, 185, 0, 0.4);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .header-button:hover {
+            background: rgba(118, 185, 0, 0.2);
+            border-color: #76b900;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(118, 185, 0, 0.3);
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 60px 20px;
+            background: rgba(20, 20, 20, 0.4);
+            border-radius: 16px;
+            border: 1px solid rgba(118, 185, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #76b900 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 48px;
+            background: linear-gradient(135deg, #76b900 0%, #5a8f00 100%);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(118, 185, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(118, 185, 0, 0.5);
+            background: linear-gradient(135deg, #8ed600 0%, #76b900 100%);
+        }
+
+        .cta-button.secondary {
+            background: rgba(20, 20, 20, 0.8);
+            border: 2px solid #76b900;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(118, 185, 0, 0.1);
+            border-color: #8ed600;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .section-title span {
+            color: #76b900;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .game-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(118, 185, 0, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .game-card:hover {
+            background: rgba(118, 185, 0, 0.15);
+            border-color: #76b900;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(118, 185, 0, 0.3);
+        }
+
+        .game-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(118, 185, 0, 0.3) 0%, rgba(118, 185, 0, 0.1) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 700;
+            color: #76b900;
+            margin: 0 auto 20px;
+            border: 2px solid rgba(118, 185, 0, 0.4);
+        }
+
+        .game-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .game-status {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .feature-card {
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid rgba(118, 185, 0, 0.2);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(118, 185, 0, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #76b900;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(118, 185, 0, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #76b900;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-section">
+                <div class="logo">Six Seven <span>Games</span></div>
+                <div class="tagline">Secure, Safe, and Free</div>
+            </div>
+            <button onclick="aboutblank()" target="_blank" class="header-button">Open site in about:blank</button>
+        </header>
+
+        <div class="hero">
+            <h1>Play Your Favorite Games Instantly</h1>
+            <p>Experience high-performance gaming on any device with NVIDIA's revolutionary cloud gaming platform. No downloads, no waiting - just pure gaming.</p>
+            <div class="button-group">
+                <button class="cta-button" onclick="window.location.href='games.html'">Browse Game Library</button>
+                <button class="cta-button secondary" onclick="window.location.href='browsers.html'">Access Secure Browsers</button>
+            </div>
+        </div>
+
+        
+        <footer>
+            <p>Powered by NVIDIA RTX Technology | © 2024 GeForce NOW</p>
+            <p style="margin-top: 10px; font-size: 12px;">Cloud Gaming Platform - Play Anywhere, Anytime</p>
+        </footer>
+    </div>
+
+    <script>
+        const games = [
+            { title: "Balatro", url: "https://development.churchinhuntsville.org/resources/semag/balatro/index.html" },
+            { title: "Getting Over It", url: "https://development.churchinhuntsville.org/resources/semag/getting-over-it/index.html" },
+            { title: "1v1.lol", url: "https://development.churchinhuntsville.org/resources/semag/1v1lol/index.html" },
+            { title: "2048", url: "https://development.churchinhuntsville.org/resources/semag/2048/index.html" },
+            { title: "Bitlife", url: "https://development.churchinhuntsville.org/resources/semag/bitlife/index.html" },
+            { title: "Moto X3M", url: "https://development.churchinhuntsville.org/resources/semag/motox3m/index.html" },
+            { title: "Moto X3M Winter", url: "https://development.churchinhuntsville.org/resources/semag/motox3m-winter/index.html" },
+            { title: "Moto X3M Pool", url: "https://development.churchinhuntsville.org/resources/semag/motox3m-pool/index.html" },
+            { title: "FNAF", url: "https://development.churchinhuntsville.org/resources/semag/fnaf/index.html" }
+        ];
+
+        const gamesGrid = document.getElementById('gamesGrid');
+        
+        games.forEach(game => {
+            const initial = game.title.charAt(0).toUpperCase();
+            const card = document.createElement('a');
+            card.className = 'game-card';
+            card.href = game.url;
+            card.target = '_blank';
+            card.innerHTML = `
+                <div class="game-icon">${initial}</div>
+                <div class="game-title">${game.title}</div>
+                <div class="game-status">Available Now</div>
+            `;
+            gamesGrid.appendChild(card);
+        });
+        function aboutblank() {
+        const popup = window.open("about:blank").document;
+
+        const favicon = popup.createElement("link");
+        const style = popup.createElement("style");
+        const iframe = popup.createElement("iframe");
+
+        popup.title = "Dashboard";
+        favicon.rel = "icon";
+        favicon.href =   "https://cuhsd.instructure.com/favicon.ico";
+
+        style.innerHTML = `html, body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          width: 100%;
+          overflow: hidden;
+        }
+        iframe {
+          width: 100%;
+          height: 100%;
+          border: none;
+        }`;
+
+        iframe.src = window.location.href;
+
+        popup.head.appendChild(favicon);
+        popup.head.appendChild(style);
+        popup.body.appendChild(iframe);
+      }
+    </script>
+</body>
+</html>
