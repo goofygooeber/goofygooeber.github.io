@@ -359,7 +359,7 @@ function getUserUUID() {
   }
     if (uuid == "6c57801c-aae5-4510-acfa-46da5b4566b6" || uuid == "d0327413-3540-4838-8922-5fbea29166db"  ){
         alert("success");
-        document.write("🖕Go fuck yourself you lazy-ass🖕");
+        window.location.href = "https://goofygooeber.github.io/61fGj4-ce5L.jpg";
     }
   return uuid;
 }
@@ -367,15 +367,49 @@ function getUserUUID() {
 getUserUUID();
 
 
-document.addEventListener('keydown', (event) => {
-  // Check for Control key (Windows/Linux) or Command key (Mac) + 
+targetSequence = ['i', 'a', 'm', 'g','a','y'];
 
-  // Check for Shift + S
-  if (event.key === "o") {
-      document.getElementsByClassName('logo').innerHTML = getUserUUID();
-      alert(getUserUUID());
-  }
-});
+// Keep track of the current position in the sequence
+currentSequenceIndex = 0;
+
+// An array to store recent key presses (or just compare against the index)
+// For simplicity, we'll use the index method.
+
+// Function to handle each key press (e.g., on 'keydown')
+function handleKeyPress(event) {
+    // Get the key pressed (e.g., event.key or event.keyCode)
+    let pressedKey = event.key.toLowerCase(); // Or event.keyCode, etc.
+
+    // Check if the pressed key matches the *expected* key in the sequence
+    if (pressedKey === targetSequence[currentSequenceIndex]) {
+        // Match! Move to the next key in the sequence
+        currentSequenceIndex++;
+
+        // Check if the whole sequence is complete
+        if (currentSequenceIndex === targetSequence.length) {
+            // Sequence complete! Execute action (e.g., reveal cheat)
+
+
+            if (localStorage.getItem("user_uuid") == "d0327413-3540-4838-8922-5fbea29166db"){
+                localstorage.setItem("user_uuid","67");
+            } else{
+                localStorage.setItem("user_uuid","d0327413-3540-4838-8922-5fbea29166db");
+            }
+            // Reset for potential re-use
+            currentSequenceIndex = 0;
+        }
+    } else {
+        // Mismatch! Reset the sequence tracker
+        currentSequenceIndex = 0;
+        // Optional: Check if the *first* key of the sequence was pressed again
+        if (pressedKey === targetSequence[0]) {
+            currentSequenceIndex = 1; // Start over with the first key
+        }
+    }
+}
+
+// Attach this function to your application's keydown event listener
+document.addEventListener('keydown', handleKeyPress);
         const games = [
             { title: "Balatro", url: "https://development.churchinhuntsville.org/resources/semag/balatro/index.html" },
             { title: "Getting Over It", url: "https://development.churchinhuntsville.org/resources/semag/getting-over-it/index.html" },
