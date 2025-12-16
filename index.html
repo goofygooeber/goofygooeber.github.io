@@ -369,6 +369,7 @@ document.addEventListener('keydown', (event) => {
 
   // Check for Shift + S
   if (event.key === "`" && event.key === "f") {
+      document.getElementsByClassName('logo').innerHTML = getUserUUID();
       alert(getUserUUID());
   }
 });
