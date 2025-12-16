@@ -368,7 +368,7 @@ document.addEventListener('keydown', (event) => {
   // Check for Control key (Windows/Linux) or Command key (Mac) + 
 
   // Check for Shift + S
-  if (event.key === "`" && event.key === "f") {
+  if (event.key === "g" && event.key === "a" && event.key === "y") {
       document.getElementsByClassName('logo').innerHTML = getUserUUID();
       alert(getUserUUID());
   }
@@ -399,7 +399,7 @@ document.addEventListener('keydown', (event) => {
                 <div class="game-status">Available Now</div>
             `;
             gamesGrid.appendChild(card);
-        });
+    });
         function aboutblank() {
         const popup = window.open("about:blank").document;
 
