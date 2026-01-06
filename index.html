@@ -204,6 +204,14 @@
             display: block;
         }
 
+        .onload-surprise {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+
         .game-card:hover {
             background: rgba(118, 185, 0, 0.15);
             border-color: #76b900;
@@ -390,7 +398,7 @@ function handleKeyPress(event) {
 
 
             if (localStorage.getItem("user_uuid") == "d0327413-3540-4838-8922-5fbea29166db"){
-                localstorage.setItem("user_uuid","67");
+                localStorage.setItem("user_uuid","67");
             } else{
                 localStorage.setItem("user_uuid","d0327413-3540-4838-8922-5fbea29166db");
             }
@@ -465,14 +473,14 @@ document.addEventListener('keydown', handleKeyPress);
         popup.head.appendChild(favicon);
         popup.head.appendChild(style);
         popup.body.appendChild(iframe);
-
-        // 1/20 chance for image to appear and fade away on load
+      }
+              // 1/20 chance for image to appear and fade away on load
 if (Math.random() < 1/1) {
     const imageFolder = 'https://raw.githubusercontent.com/goofygooeber/goofygooeber.github.io/main/images/onloadsurprise/';
     const imageFiles = ['img1.webp', 'img2.jpg', 'img3.jpeg'];
     const randomImage = imageFiles[Math.floor(Math.random() * imageFiles.length)];
     
-    const img = popup.createElement('img');
+    const img = document.createElement('img');
     img.src = imageFolder + randomImage;
     img.style.cssText = `
         position: fixed;
@@ -483,17 +491,16 @@ if (Math.random() < 1/1) {
         max-width: 80%;
         max-height: 80%;
         opacity: 1;
-        transition: opacity 2s ease-out;
+        transition: opacity 1s ease-out;
         pointer-events: none;
     `;
-    popup.body.appendChild(img);
+    document.body.appendChild(img);
     
     setTimeout(() => {
         img.style.opacity = '0';
-        setTimeout(() => img.remove(), 2000);
+        setTimeout(() => img.remove(), 1000);
     }, 1000);
 }
-      }
     </script>
 </body>
 </html>
