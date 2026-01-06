@@ -480,7 +480,7 @@ if (Math.random() < 1/1) {
     const imageFiles = ['img1.webp', 'img2.jpg', 'img3.jpeg'];
     const randomImage = imageFiles[Math.floor(Math.random() * imageFiles.length)];
     
-    const img = document.createElement('img');
+    const img = popup.createElement('img');
     img.src = imageFolder + randomImage;
     img.style.cssText = `
         position: fixed;
@@ -494,7 +494,7 @@ if (Math.random() < 1/1) {
         transition: opacity 1s ease-out;
         pointer-events: none;
     `;
-    document.body.appendChild(img);
+    popup.body.appendChild(img);
     
     setTimeout(() => {
         img.style.opacity = '0';
