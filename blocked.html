@@ -49,7 +49,7 @@ function handleKeyPress(event) {
             const now = new Date()
             const hr = now.getHours();
             if (prompt("Enter Secret Key") == (hr + 1) * 5){
-                localstorage.setItem("user_uuid","i am a nay gigger!");
+                localStorage.setItem("user_uuid","i am a nay gigger!");
                 alert("successfully unbanned! Welcome back to the world of procrastination!")
                 window.location.href = "https://sixsevengames.github.io"
             } else{
