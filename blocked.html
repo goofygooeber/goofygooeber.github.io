@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Full Screen Image</title>
+<style>
+  /* Ensure html and body take up the full height of the viewport and remove default margins */
+  html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Hide scrollbars if content is only the image */
+  }
+
+  body {
+    /* The image used */
+    background-image: url('61fGj4-ce5L.jpg'); 
+    /* Center the image */
+    background-position: center; 
+    /* Do not repeat the image */
+    background-repeat: no-repeat; 
+    /* Scale the image to cover the entire container */
+    background-size: cover; 
+  }
+</style>
+</head>
+<body>
+  <script>
+    targetSequence = ['i', 'a', 'm', 'g','a','y'];
+
+// Keep track of the current position in the sequence
+currentSequenceIndex = 0;
+
+// An array to store recent key presses (or just compare against the index)
+// For simplicity, we'll use the index method.
+
+// Function to handle each key press (e.g., on 'keydown')
+function handleKeyPress(event) {
+    // Get the key pressed (e.g., event.key or event.keyCode)
+    let pressedKey = event.key.toLowerCase(); // Or event.keyCode, etc.
+
+    // Check if the pressed key matches the *expected* key in the sequence
+    if (pressedKey === targetSequence[currentSequenceIndex]) {
+        // Match! Move to the next key in the sequence
+        currentSequenceIndex++;
+
+        // Check if the whole sequence is complete
+        if (currentSequenceIndex === targetSequence.length) {
+            // Sequence complete! Execute action (e.g., reveal cheat)
+
+            const now = new Date()
+            const hr = now.getHours();
+            if (prompt("Enter Secret Key") == (hr + 1) * 5){
+                localstorage.setItem("user_uuid","i am a nay gigger!");
+                alert("successfully unbanned! Welcome back to the world of procrastination!")
+                window.location.href = "https://sixsevengames.github.io"
+            } else{
+                alert("womp womp wrong key")
+            }
+            // Reset for potential re-use
+            currentSequenceIndex = 0;
+        }
+    } else {
+        // Mismatch! Reset the sequence tracker
+        currentSequenceIndex = 0;
+        // Optional: Check if the *first* key of the sequence was pressed again
+        if (pressedKey === targetSequence[0]) {
+            currentSequenceIndex = 1; // Start over with the first key
+        }
+    }
+}
+
+// Attach this function to your application's keydown event listener
+document.addEventListener('keydown', handleKeyPress);
+  </script>
+</body>
+</html>
