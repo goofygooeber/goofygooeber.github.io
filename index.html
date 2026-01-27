@@ -14,9 +14,9 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d1b0d 100%);
-            min-height: 100vh;
+            height: 100vh;
             position: relative;
-            overflow-x: hidden;
+            overflow: hidden;
             color: #ffffff;
         }
 
@@ -45,9 +45,10 @@
         }
 
         .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
             position: relative;
             z-index: 1;
         }
@@ -56,11 +57,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 60px;
-            padding-bottom: 30px;
+            padding-bottom: 15px;
             border-bottom: 1px solid rgba(118, 185, 0, 0.2);
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
+            flex-shrink: 0;
         }
 
         .logo-section {
@@ -70,10 +71,10 @@
         }
 
         .logo {
-            font-size: 48px;
+            font-size: 36px;
             font-weight: 700;
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-shadow: 0 0 30px rgba(118, 185, 0, 0.3);
         }
 
@@ -83,22 +84,56 @@
 
         .tagline {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 16px;
+            font-size: 14px;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
+        .system-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(118, 185, 0, 0.3);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .info-icon {
+            color: #76b900;
+            font-size: 18px;
+        }
+
+        .battery-level {
+            color: #76b900;
+            font-weight: 600;
+        }
+
+        .time-display {
+            color: #76b900;
+            font-weight: 600;
+        }
+
         .header-button {
-            padding: 12px 28px;
+            padding: 10px 24px;
             background: rgba(20, 20, 20, 0.8);
             border: 2px solid rgba(118, 185, 0, 0.4);
             color: #ffffff;
             text-decoration: none;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             transition: all 0.3s ease;
             display: inline-block;
+            cursor: pointer;
         }
 
         .header-button:hover {
@@ -110,17 +145,18 @@
 
         .hero {
             text-align: center;
-            margin-bottom: 80px;
-            padding: 60px 20px;
+            padding: 30px 20px;
             background: rgba(20, 20, 20, 0.4);
             border-radius: 16px;
             border: 1px solid rgba(118, 185, 0, 0.2);
             backdrop-filter: blur(10px);
+            flex-shrink: 0;
+            margin-top: 15px;
         }
 
         .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px;
+            font-size: 32px;
+            margin-bottom: 12px;
             background: linear-gradient(135deg, #ffffff 0%, #76b900 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -128,27 +164,27 @@
         }
 
         .hero p {
-            font-size: 18px;
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.7);
             max-width: 700px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
+            margin: 0 auto 20px;
+            line-height: 1.5;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 18px 48px;
+            padding: 14px 36px;
             background: linear-gradient(135deg, #76b900 0%, #5a8f00 100%);
             color: #ffffff;
             text-decoration: none;
             border-radius: 8px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(118, 185, 0, 0.3);
             border: none;
             cursor: pointer;
-            margin: 0 10px;
+            margin: 0 8px;
         }
 
         .cta-button:hover {
@@ -169,147 +205,68 @@
 
         .button-group {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .section-title {
-            font-size: 32px;
-            margin-bottom: 40px;
-            text-align: center;
-            letter-spacing: 1px;
+        .content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            margin-top: 15px;
+            padding-right: 10px;
         }
 
-        .section-title span {
-            color: #76b900;
+        .content-wrapper::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-            margin-bottom: 80px;
+        .content-wrapper::-webkit-scrollbar-track {
+            background: rgba(20, 20, 20, 0.4);
+            border-radius: 4px;
         }
 
-        .game-card {
-            background: rgba(20, 20, 20, 0.6);
-            border: 1px solid rgba(118, 185, 0, 0.3);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: block;
+        .content-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(118, 185, 0, 0.4);
+            border-radius: 4px;
         }
 
-        .game-card:hover {
-            background: rgba(118, 185, 0, 0.15);
-            border-color: #76b900;
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(118, 185, 0, 0.3);
-        }
-
-        .game-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, rgba(118, 185, 0, 0.3) 0%, rgba(118, 185, 0, 0.1) 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            font-weight: 700;
-            color: #76b900;
-            margin: 0 auto 20px;
-            border: 2px solid rgba(118, 185, 0, 0.4);
-        }
-
-        .game-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-
-        .game-status {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.5);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-
-        .feature-card {
-            background: rgba(20, 20, 20, 0.5);
-            border: 1px solid rgba(118, 185, 0, 0.2);
-            border-radius: 12px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(118, 185, 0, 0.5);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .feature-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #76b900;
-        }
-
-        .feature-description {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+        .content-wrapper::-webkit-scrollbar-thumb:hover {
+            background: rgba(118, 185, 0, 0.6);
         }
 
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 15px 20px;
             border-top: 1px solid rgba(118, 185, 0, 0.2);
             color: rgba(255, 255, 255, 0.5);
-            font-size: 14px;
+            font-size: 12px;
+            flex-shrink: 0;
+            margin-top: 15px;
         }
 
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-bottom: 80px;
-            flex-wrap: wrap;
-        }
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 28px;
+            }
 
-        .stat-item {
-            text-align: center;
-        }
+            .hero h1 {
+                font-size: 24px;
+            }
 
-        .stat-number {
-            font-size: 48px;
-            font-weight: 700;
-            color: #76b900;
-            margin-bottom: 10px;
-        }
+            .hero p {
+                font-size: 14px;
+            }
 
-        .stat-label {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            .system-info {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .info-item {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
         }
     </style>
 </head>
@@ -320,7 +277,17 @@
                 <div class="logo">Six Seven <span>Games</span></div>
                 <div class="tagline">Secure, Safe, and Free</div>
             </div>
-            <button onclick="aboutblank()" target="_blank" class="header-button">Open site in about:blank</button>
+            <div class="system-info">
+                <div class="info-item">
+                    <span class="info-icon">🔋</span>
+                    <span class="battery-level" id="batteryLevel">--</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">🕐</span>
+                    <span class="time-display" id="timeDisplay">--:--</span>
+                </div>
+            </div>
+            <button onclick="aboutblank()" class="header-button">Open site in about:blank</button>
         </header>
 
         <div class="hero">
@@ -332,14 +299,67 @@
             </div>
         </div>
 
+        <div class="content-wrapper">
+            <!-- Content can be added here if needed -->
+        </div>
         
         <footer>
             <p>six seven six seven 6767 | © 2067 Six Seven Games </p>
-            <p style="margin-top: 10px; font-size: 12px;">Brainrot Gaming Platform - Play Anywhere, Anytime</p>
+            <p style="margin-top: 5px; font-size: 11px;">Brainrot Gaming Platform - Play Anywhere, Anytime</p>
         </footer>
     </div>
 
     <script>
+// Battery Level
+async function updateBattery() {
+    try {
+        if ('getBattery' in navigator) {
+            const battery = await navigator.getBattery();
+            
+            function updateBatteryDisplay() {
+                const level = Math.round(battery.level * 100);
+                const charging = battery.charging;
+                const batteryElement = document.getElementById('batteryLevel');
+                
+                batteryElement.textContent = `${level}%${charging ? ' ⚡' : ''}`;
+                
+                // Change color based on battery level
+                if (level <= 20 && !charging) {
+                    batteryElement.style.color = '#ff4444';
+                } else if (level <= 50 && !charging) {
+                    batteryElement.style.color = '#ffaa00';
+                } else {
+                    batteryElement.style.color = '#76b900';
+                }
+            }
+            
+            updateBatteryDisplay();
+            
+            battery.addEventListener('levelchange', updateBatteryDisplay);
+            battery.addEventListener('chargingchange', updateBatteryDisplay);
+        } else {
+            document.getElementById('batteryLevel').textContent = 'N/A';
+        }
+    } catch (error) {
+        document.getElementById('batteryLevel').textContent = 'N/A';
+    }
+}
+
+// Time Display
+function updateTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    
+    document.getElementById('timeDisplay').textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+// Initialize
+updateBattery();
+updateTime();
+setInterval(updateTime, 1000);
+
 function generateUUIDv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
     const r = Math.random() * 16 | 0;
@@ -423,19 +443,22 @@ document.addEventListener('keydown', handleKeyPress);
 
         const gamesGrid = document.getElementById('gamesGrid');
         
-        games.forEach(game => {
-            const initial = game.title.charAt(0).toUpperCase();
-            const card = document.createElement('a');
-            card.className = 'game-card';
-            card.href = game.url;
-            card.target = '_blank';
-            card.innerHTML = `
-                <div class="game-icon">${initial}</div>
-                <div class="game-title">${game.title}</div>
-                <div class="game-status">Available Now</div>
-            `;
-            gamesGrid.appendChild(card);
-    });
+        if (gamesGrid) {
+            games.forEach(game => {
+                const initial = game.title.charAt(0).toUpperCase();
+                const card = document.createElement('a');
+                card.className = 'game-card';
+                card.href = game.url;
+                card.target = '_blank';
+                card.innerHTML = `
+                    <div class="game-icon">${initial}</div>
+                    <div class="game-title">${game.title}</div>
+                    <div class="game-status">Available Now</div>
+                `;
+                gamesGrid.appendChild(card);
+            });
+        }
+        
         function aboutblank() {
         const popup = window.open("about:blank").document;
 
