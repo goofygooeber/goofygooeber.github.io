@@ -1,0 +1,15 @@
+gradient-text {
+    font-size: 72px; /* Set a large font size for better visibility */
+    font-weight: bold; /* Make the text bold */
+    
+    /* Apply a linear gradient background */
+    background: linear-gradient(to right, red, orange, brown); 
+    
+    /* Clip the background to the text area */
+    -webkit-background-clip: text; /* For broader browser compatibility */
+    background-clip: text;
+    
+    /* Make the text color transparent so the background shows through */
+    -webkit-text-fill-color: transparent; /* For broader browser compatibility */
+    text-fill-color: transparent;
+}
