@@ -43,7 +43,16 @@
             border-radius: 50%;
             z-index: 0;
         }
-
+        /* Add this inside your existing <style> tag */
+        .gradient-text {
+            font-size: 72px;
+            font-weight: bold;
+            background: linear-gradient(to right, red, orange, brown); 
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+        }
         .container {
             height: 100vh;
             display: flex;
