@@ -45,14 +45,20 @@
         }
         /* Add this inside your existing <style> tag */
         .gradient-text {
-            font-size: 72px;
-            font-weight: bold;
-            background: linear-gradient(to right, red, orange, brown); 
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-fill-color: transparent;
+        font-size: 144px;
+        font-weight: bold;
+        background: linear-gradient(to right, #00ff44, #1aff00, #b6ff00);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        /* neon glow */
+        text-shadow:
+        0 0 6px #1aff00,
+        0 0 18px #1aff00,
+        0 0 36px #00ff44;
         }
+    
         .container {
             height: 100vh;
             display: flex;
